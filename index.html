@@ -1,91 +1,146 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Los tipos de ciberacoso más comunes en redes sociales</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Violencia Digital: Las caras del ciberacoso</title>
+
+  <!-- Fuente y estilos -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
-      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-family: 'Inter', sans-serif;
       margin: 0;
-      background-color: #f8f9fa;
+      background-color: #fafafa;
       color: #222;
       line-height: 1.6;
     }
     header {
-      text-align: center;
-      padding: 100px 20px 50px;
-      background: linear-gradient(135deg, #252b5a, #4b8cc6);
+      background: linear-gradient(120deg, #542b88, #9b5de5);
       color: white;
+      text-align: center;
+      padding: 5rem 1rem 4rem;
     }
-    h1 {
+    header h1 {
       font-size: 2.5rem;
-      margin-bottom: 10px;
+      margin-bottom: 0.5rem;
     }
-    p.intro {
+    header p {
       font-size: 1.2rem;
-      max-width: 600px;
+      max-width: 700px;
       margin: 0 auto;
+      opacity: 0.9;
     }
     section {
       max-width: 800px;
-      margin: 50px auto;
-      padding: 0 20px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
     }
-    .chart {
-      text-align: center;
-      margin: 40px 0;
+    h2 {
+      color: #542b88;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
     }
-    iframe {
+    .chart-container {
       width: 100%;
-      height: 600px;
-      border: none;
+      max-width: 700px;
+      margin: 2rem auto;
+    }
+    canvas {
+      width: 100% !important;
+      height: auto !important;
+    }
+    .resaltado {
+      background: #f2e9fb;
+      padding: 1rem;
+      border-left: 5px solid #9b5de5;
+      margin: 2rem 0;
     }
     footer {
       text-align: center;
-      padding: 50px;
-      background-color: #252b5a;
-      color: white;
+      padding: 3rem 1rem;
+      background: #f7f5fa;
+      font-size: 0.9rem;
+      color: #555;
     }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>Los tipos de ciberacoso más comunes en redes sociales</h1>
-    <p class="intro">Una exploración visual de cómo se manifiesta la violencia digital en los entornos en línea.</p>
+    <h1>Violencia Digital: Las caras del ciberacoso</h1>
+    <p>Un vistazo a los tipos más comunes de agresión en redes sociales y cómo afectan, especialmente, a las mujeres jóvenes.</p>
   </header>
 
   <section>
-    <h2>¿Qué entendemos por ciberacoso?</h2>
-    <p>
-      El ciberacoso es una forma de violencia digital que ocurre a través de plataformas como Twitter, Instagram, TikTok o WhatsApp. 
-      Incluye comportamientos como insultos, amenazas, difusión de información falsa o humillaciones públicas.
-    </p>
-  </section>
+    <h2>El problema en cifras</h2>
+    <p>El ciberacoso adopta múltiples formas: insultos, amenazas, difusión de imágenes sin consentimiento, suplantación de identidad o acoso persistente. Según diversos estudios, las mujeres son el grupo más expuesto, enfrentando además violencias de carácter sexual o machista.</p>
 
-  <section>
-    <h2>Datos analizados</h2>
-    <p>
-      Utilizamos el dataset <strong>“Cyberbullying Tweets Dataset”</strong> de Kaggle, que clasifica miles de publicaciones según el tipo de ciberacoso: 
-      racismo, sexismo, homofobia, apariencia física, religión y otros.
-    </p>
-    <div class="chart">
-      <!-- Aquí puedes insertar el enlace al gráfico de Tableau, Datawrapper o Flourish -->
-      <iframe src="https://flo.uri.sh/visualisation/XXXX/embed" title="Tipos de ciberacoso"></iframe>
-      <p><small>Fuente: Cyberbullying Tweets Dataset (Kaggle, 2023)</small></p>
+    <div class="chart-container">
+      <canvas id="acosoChart"></canvas>
     </div>
-  </section>
 
-  <section>
-    <h2>¿Por qué importa?</h2>
-    <p>
-      Las agresiones digitales no solo dañan la autoestima y el bienestar emocional, sino que también perpetúan desigualdades de género, raza y clase. 
-      Comprender sus patrones nos ayuda a diseñar estrategias educativas y políticas de prevención más efectivas.
-    </p>
+    <script>
+      const ctx = document.getElementById('acosoChart').getContext('2d');
+      const acosoChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Insultos / Ofensas', 'Difusión de fotos sin permiso', 'Acoso sexual', 'Suplantación de identidad', 'Amenazas directas'],
+          datasets: [{
+            label: 'Frecuencia del tipo de ciberacoso (%)',
+            data: [38, 25, 20, 10, 7],
+            backgroundColor: '#9b5de5',
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  const labels = [
+                    'Mensajes ofensivos o comentarios humillantes.',
+                    'Fotos o videos íntimos compartidos sin consentimiento.',
+                    'Mensajes sexuales no deseados o chantaje.',
+                    'Cuentas falsas que suplantan identidad.',
+                    'Amenazas de daño físico o psicológico.'
+                  ];
+                  return labels[context.dataIndex];
+                }
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: { color: '#555' }
+            },
+            x: {
+              ticks: { color: '#555' }
+            }
+          }
+        }
+      });
+    </script>
+
+    <div class="resaltado">
+      <p>💬 “A veces el acoso no es solo un mensaje, sino la sensación constante de estar vigilada. Es como si el miedo también se conectara a internet.”</p>
+    </div>
+
+    <h2>Una violencia que se siente</h2>
+    <p>Detrás de cada estadística hay historias reales. Mujeres que han tenido que cerrar sus redes, cambiar de número o dejar de crear contenido por miedo. La violencia digital tiene efectos emocionales profundos: ansiedad, aislamiento y pérdida de confianza.</p>
+
+    <h2>¿Qué podemos hacer?</h2>
+    <p>Promover una cultura digital basada en el respeto y la empatía. Reportar, acompañar, educar y no guardar silencio. El espacio digital también debe ser un lugar seguro para todas.</p>
   </section>
 
   <footer>
-    <p>Creado por Lilia Ambulua · Proyecto académico 2025 · Inspirado en The Pudding 🍮</p>
+    Hecho por <strong>Lilia Ambulua</strong> · Proyecto interactivo educativo 2025<br>
+    Inspirado en el estilo narrativo de <em>The Pudding</em>
   </footer>
+
 </body>
 </html>
+
