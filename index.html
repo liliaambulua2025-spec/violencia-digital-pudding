@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Violencia Digital: Las caras del ciberacoso</title>
-
-  <!-- Fuente y estilos -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
       font-family: 'Inter', sans-serif;
       margin: 0;
-      background-color: #fafafa;
+      background: #fafafa;
       color: #222;
-      line-height: 1.6;
+      overflow-x: hidden;
     }
     header {
       background: linear-gradient(120deg, #542b88, #9b5de5);
@@ -33,29 +31,37 @@
       opacity: 0.9;
     }
     section {
-      max-width: 800px;
-      margin: 3rem auto;
-      padding: 0 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      max-width: 1000px;
+      margin: 4rem auto;
+      gap: 2rem;
+      padding: 0 1rem;
+    }
+    .text {
+      flex: 1;
+      position: sticky;
+      top: 100px;
+      align-self: flex-start;
+    }
+    .steps {
+      flex: 1;
+    }
+    .step {
+      min-height: 60vh;
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
     h2 {
       color: #542b88;
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-    }
-    .chart-container {
-      width: 100%;
-      max-width: 700px;
-      margin: 2rem auto;
     }
     canvas {
       width: 100% !important;
       height: auto !important;
-    }
-    .resaltado {
-      background: #f2e9fb;
-      padding: 1rem;
-      border-left: 5px solid #9b5de5;
-      margin: 2rem 0;
     }
     footer {
       text-align: center;
@@ -68,79 +74,85 @@
 </head>
 <body>
 
-  <header>
-    <h1>Violencia Digital: Las caras del ciberacoso</h1>
-    <p>Un vistazo a los tipos más comunes de agresión en redes sociales y cómo afectan, especialmente, a las mujeres jóvenes.</p>
-  </header>
+<header>
+  <h1>Violencia Digital: Las caras del ciberacoso</h1>
+  <p>Una historia interactiva sobre cómo el acoso en redes sociales adopta distintas formas —y por qué debemos enfrentarlo.</p>
+</header>
 
-  <section>
-    <h2>El problema en cifras</h2>
-    <p>El ciberacoso adopta múltiples formas: insultos, amenazas, difusión de imágenes sin consentimiento, suplantación de identidad o acoso persistente. Según diversos estudios, las mujeres son el grupo más expuesto, enfrentando además violencias de carácter sexual o machista.</p>
+<section>
+  <div class="text">
+    <canvas id="acosoChart"></canvas>
+  </div>
 
-    <div class="chart-container">
-      <canvas id="acosoChart"></canvas>
+  <div class="steps">
+    <div class="step" data-step="0">
+      <h2>1. Los insultos: el punto de partida</h2>
+      <p>El 38% de los casos reportados corresponden a mensajes ofensivos, burlas o humillaciones públicas. Es la forma más visible, pero también la más normalizada del acoso.</p>
     </div>
-
-    <script>
-      const ctx = document.getElementById('acosoChart').getContext('2d');
-      const acosoChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['Insultos / Ofensas', 'Difusión de fotos sin permiso', 'Acoso sexual', 'Suplantación de identidad', 'Amenazas directas'],
-          datasets: [{
-            label: 'Frecuencia del tipo de ciberacoso (%)',
-            data: [38, 25, 20, 10, 7],
-            backgroundColor: '#9b5de5',
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: { display: false },
-            tooltip: {
-              callbacks: {
-                label: function(context) {
-                  const labels = [
-                    'Mensajes ofensivos o comentarios humillantes.',
-                    'Fotos o videos íntimos compartidos sin consentimiento.',
-                    'Mensajes sexuales no deseados o chantaje.',
-                    'Cuentas falsas que suplantan identidad.',
-                    'Amenazas de daño físico o psicológico.'
-                  ];
-                  return labels[context.dataIndex];
-                }
-              }
-            }
-          },
-          scales: {
-            y: {
-              beginAtZero: true,
-              ticks: { color: '#555' }
-            },
-            x: {
-              ticks: { color: '#555' }
-            }
-          }
-        }
-      });
-    </script>
-
-    <div class="resaltado">
-      <p>💬 “A veces el acoso no es solo un mensaje, sino la sensación constante de estar vigilada. Es como si el miedo también se conectara a internet.”</p>
+    <div class="step" data-step="1">
+      <h2>2. La exposición sin permiso</h2>
+      <p>El 25% de las víctimas reportan que sus fotos o videos íntimos fueron difundidos sin consentimiento. En su mayoría, mujeres jóvenes. La vergüenza no debería recaer en ellas.</p>
     </div>
+    <div class="step" data-step="2">
+      <h2>3. El acoso sexual y la amenaza constante</h2>
+      <p>El 20% experimenta acoso con connotaciones sexuales. A menudo va acompañado de chantajes, amenazas o mensajes explícitos. Lo digital no lo hace menos real.</p>
+    </div>
+  </div>
+</section>
 
-    <h2>Una violencia que se siente</h2>
-    <p>Detrás de cada estadística hay historias reales. Mujeres que han tenido que cerrar sus redes, cambiar de número o dejar de crear contenido por miedo. La violencia digital tiene efectos emocionales profundos: ansiedad, aislamiento y pérdida de confianza.</p>
+<footer>
+  Hecho por <strong>Lilia Ambulua</strong> · Proyecto narrativo interactivo 2025<br>
+  Inspirado en el estilo visual de <em>The Pudding</em>.
+</footer>
 
-    <h2>¿Qué podemos hacer?</h2>
-    <p>Promover una cultura digital basada en el respeto y la empatía. Reportar, acompañar, educar y no guardar silencio. El espacio digital también debe ser un lugar seguro para todas.</p>
-  </section>
+<script>
+  const ctx = document.getElementById('acosoChart').getContext('2d');
+  const datasets = [
+    {
+      label: 'Insultos / Ofensas',
+      data: [38],
+      backgroundColor: '#9b5de5'
+    },
+    {
+      label: 'Difusión sin consentimiento',
+      data: [25],
+      backgroundColor: '#f15bb5'
+    },
+    {
+      label: 'Acoso sexual',
+      data: [20],
+      backgroundColor: '#fee440'
+    }
+  ];
 
-  <footer>
-    Hecho por <strong>Lilia Ambulua</strong> · Proyecto interactivo educativo 2025<br>
-    Inspirado en el estilo narrativo de <em>The Pudding</em>
-  </footer>
+  let chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Tipo de ciberacoso'],
+      datasets: [datasets[0]]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: true } },
+      scales: {
+        y: { beginAtZero: true, max: 50 }
+      }
+    }
+  });
+
+  const steps = document.querySelectorAll('.step');
+  window.addEventListener('scroll', () => {
+    let index = 0;
+    steps.forEach((step, i) => {
+      const rect = step.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.5 && rect.bottom > window.innerHeight * 0.5) {
+        index = i;
+      }
+    });
+    chart.data.datasets = [datasets[index]];
+    chart.update();
+  });
+</script>
 
 </body>
 </html>
-
