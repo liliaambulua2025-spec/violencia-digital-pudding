@@ -7,62 +7,124 @@
   <meta name="description" content="Investigación periodística de datos sobre ciberbullying en la pandemia de 2020">
   <style>
     :root{
-      --bg:#fbfbfc; --text:#111827; --muted:#6b7280; --accent:#6d28d9; --card:#ffffff;
+      --bg:#fbfbfc; 
+      --text:#111827; 
+      --muted:#6b7280; 
+      --accent:#6d28d9; 
+      --card:#ffffff;
       --max:920px;
       font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     }
-    html,body{height:100%; margin:0; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; scroll-behavior:smooth;}
-    .wrap{max-width:var(--max); margin:0 auto; padding:28px}
-    .hero{display:grid; gap:18px; align-items:center; padding:60px 0}
-    .kicker{color:var(--accent); font-weight:700; letter-spacing:.06em}
-    h1{font-size:clamp(28px,4vw,44px); margin:6px 0}
-    p.lead{font-size:18px; color:var(--muted); line-height:1.6}
-    .meta{display:flex; gap:12px; flex-wrap:wrap; color:var(--muted); font-size:14px}
 
-    .stage{margin:48px 0}
-    .panel{background:var(--card); border-radius:12px; padding:20px; box-shadow:0 6px 20px rgba(15,23,42,0.06)}
-    .panel + .panel{margin-top:18px}
-    .viz{height:420px; border-radius:8px; overflow:hidden; background:linear-gradient(180deg,#fff,#fafafa); display:flex; align-items:center; justify-content:center}
-    .caption{font-size:14px; color:var(--muted); margin-top:12px}
+    html, body{
+      margin:0; 
+      padding:0; 
+      background:var(--bg); 
+      color:var(--text); 
+      font-family:inherit;
+      scroll-behavior:smooth;
+    }
 
-    .split{display:grid; grid-template-columns:1fr 360px; gap:20px; align-items:start}
-    .split .panel{padding:18px}
-    .small{font-size:13px; color:var(--muted)}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
 
-    footer{margin-top:48px; text-align:center; color:var(--muted); font-size:13px}
-    a.repo{color:var(--accent); font-weight:600}
+    /* HERO / INTRO */
+    .hero{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:flex-start;
+      min-height:100vh;
+      padding:0 20px;
+      background:linear-gradient(180deg,#f9f9fc,#fbfbfc);
+    }
+    .hero .kicker{
+      color:var(--accent); 
+      font-weight:700; 
+      letter-spacing:.06em;
+      font-size:16px;
+      margin-bottom:12px;
+    }
+    .hero h1{
+      font-size:clamp(36px,6vw,64px);
+      line-height:1.2;
+      margin:0 0 24px 0;
+    }
+    .hero p.lead{
+      font-size:20px;
+      line-height:1.6;
+      color:var(--muted);
+      max-width:720px;
+    }
+    .hero .meta{
+      margin-top:24px;
+      font-size:14px;
+      color:var(--muted);
+    }
+    .hero .meta a.repo{
+      color:var(--accent);
+      font-weight:600;
+      text-decoration:none;
+    }
+
+    /* SECCIONES */
+    .stage{margin:64px 0;}
+    .panel{
+      background:var(--card); 
+      border-radius:12px; 
+      padding:20px; 
+      box-shadow:0 6px 20px rgba(15,23,42,0.06);
+    }
+    .panel + .panel{margin-top:18px;}
+    .viz{
+      height:420px; 
+      border-radius:8px; 
+      overflow:hidden; 
+      background:linear-gradient(180deg,#fff,#fafafa); 
+      display:flex; 
+      align-items:center; 
+      justify-content:center;
+    }
+    .caption{font-size:14px; color:var(--muted); margin-top:12px;}
+    .small{font-size:13px; color:var(--muted);}
+
+    /* SPLIT */
+    .split{display:grid; grid-template-columns:1fr 360px; gap:20px; align-items:start;}
+    .split .panel{padding:18px;}
+
+    /* FOOTER */
+    footer{margin-top:48px; text-align:center; color:var(--muted); font-size:13px;}
+    footer a.repo{color:var(--accent); font-weight:600;}
 
     /* reveal animation */
-    .reveal{opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.2,.9,.2,1)}
-    .reveal.visible{opacity:1; transform:none}
+    .reveal{opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.2,.9,.2,1);}
+    .reveal.visible{opacity:1; transform:none;}
 
     /* responsive */
     @media (max-width:880px){
-      .split{grid-template-columns:1fr}
-      .viz{height:360px}
+      .split{grid-template-columns:1fr;}
+      .viz{height:360px;}
     }
   </style>
 </head>
 <body>
+
   <div class="wrap">
 
-    <!-- HERO / INTRODUCCIÓN -->
-    <section class="stage reveal" id="introduccion">
-      <div class="panel">
-        <div class="kicker">Investigación de datos</div>
-        <h1>El eco del ciberbullying durante la pandemia del año 2020</h1>
-        <p class="lead">
-          El encierro no solo nos aisló físicamente, sino que también amplificó las voces del ciberbullying. Durante la pandemia, la vida de millones de estudiantes cambió por completo: las aulas se trasladaron a la virtualidad y las redes sociales se transformaron en su principal punto de encuentro y desahogo.
-          Este trabajo busca comprender cómo se manifestó el ciberacoso durante la pandemia, a partir del análisis del Cyberbullying Classification Dataset que contiene más de 47.000 tweets etiquetados según la clase de ciberacoso.
-        </p>
-        <div class="meta">
-          Equipo: Lilia (redacción y análisis) • Visualizaciones: Tableau • Repositorio: 
-          <a class="repo" href="https://github.com/liliaambulua2025-spec/violencia-digital-pudding" target="_blank">liliaambulua2025-spec/violencia-digital-pudding</a>
-        </div>
+    <!-- HERO / INTRO -->
+    <section class="hero reveal" id="introduccion">
+      <div class="kicker">Investigación de datos</div>
+      <h1>El eco del ciberbullying durante la pandemia del año 2020</h1>
+      <p class="lead">
+        El encierro no solo nos aisló físicamente, sino que también amplificó las voces del ciberbullying. Durante la pandemia, la vida de millones de estudiantes cambió por completo: las aulas se trasladaron a la virtualidad y las redes sociales se transformaron en su principal punto de encuentro y desahogo.
+        Este trabajo busca comprender cómo se manifestó el ciberacoso durante la pandemia, a partir del análisis del Cyberbullying Classification Dataset que contiene más de 47.000 tweets etiquetados según la clase de ciberacoso.
+      </p>
+      <div class="meta">
+        Equipo: Lilia (redacción y análisis) • Visualizaciones: Tableau • Repositorio: 
+        <a class="repo" href="https://github.com/liliaambulua2025-spec/violencia-digital-pudding" target="_blank">liliaambulua2025-spec/violencia-digital-pudding</a>
       </div>
     </section>
 
-    <!-- VOLUMEN -->
+    <!-- VOLÚMEN -->
     <section class="stage reveal" id="volumen">
       <div class="panel">
         <h2>¿Qué tan grande fue el problema?</h2>
@@ -99,12 +161,10 @@
         <h2>El lenguaje del acoso</h2>
         <p class="small">Nube de palabras global y por categoría para identificar los términos más frecuentes en los ataques.</p>
 
-        <!-- Nube global -->
         <div class="viz">
           <img src="images/nube_palabras_global.png" alt="Nube de palabras global" style="width:100%; height:auto; object-fit:contain;">
         </div>
 
-        <!-- Nube por tipo -->
         <div style="height:16px"></div>
         <div class="viz">
           <img src="images/nube_palabras_por_tipo.png" alt="Nube de palabras por tipo" style="width:100%; height:auto; object-fit:contain;">
@@ -120,4 +180,36 @@
         <h2>Cómo se expresa el ataque: longitud y palabras clave</h2>
         <p class="small">Longitud promedio de los textos por tipo de ciberbullying y palabras clave más comunes.</p>
         <div class="viz">
-          <iframe src="https://public.tableau.com/views/GraficoLongituddeltextoportipodeciberbullying/Hoj
+          <iframe src="https://public.tableau.com/views/GraficoLongituddeltextoportipodeciberbullying/Hoja4?:embed=y&:display_count=yes&:showVizHome=no" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONCLUSIÓN -->
+    <section class="stage reveal" id="conclusion">
+      <div class="panel">
+        <h2>Conclusión</h2>
+        <p>Los datos muestran que la violencia digital en 2020 no fue un accidente: hay patrones, consistencias y temas recurrentes que hablan de desigualdades sociales. Comprenderlos nos ayuda a diseñar respuestas más humanas: educación digital, acompañamiento emocional y políticas de convivencia en línea.</p>
+        <p class="small"><strong>¿Qué sigue?</strong> Exportar estos hallazgos en programas escolares, campañas de sensibilización y líneas de apoyo para jóvenes que sufren acoso en redes.</p>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>Proyecto colaborativo • <a class="repo" href="https://github.com/liliaambulua2025-spec/violencia-digital-pudding" target="_blank">liliaambulua2025-spec/violencia-digital-pudding</a></p>
+    </footer>
+
+  </div>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add('visible')
+      })
+    }, {threshold:0.12})
+    document.querySelectorAll('.reveal').forEach(s=>observer.observe(s))
+  </script>
+
+</body>
+</html>
