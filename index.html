@@ -13,7 +13,7 @@
       --muted:#6b7280;
       --accent:#6d28d9;
       --max:920px;
-      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     }
 
     html {
@@ -25,10 +25,44 @@
       background: var(--bg);
       color: var(--text);
       -webkit-font-smoothing: antialiased;
+      display: flex;
+    }
+
+    /* Menú lateral fijo */
+    nav {
+      position: fixed;
+      top:0;
+      left:0;
+      height:100vh;
+      width:200px;
+      background:#fff;
+      border-right:1px solid #e0e0e0;
+      display:flex;
+      flex-direction:column;
+      padding:40px 20px;
+      box-sizing:border-box;
+      z-index:1000;
+    }
+
+    nav a {
+      text-decoration:none;
+      color: var(--text);
+      margin-bottom:16px;
+      font-weight:500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .content {
+      margin-left:220px;
+      width: calc(100% - 220px);
     }
 
     .section {
-      min-height: 100vh;
+      min-height:100vh;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -37,16 +71,24 @@
       position: relative;
     }
 
+    /* Fondos distintos por sección */
+    #intro { background: linear-gradient(to bottom, #f7f7f9, #eaeaf3);}
+    #volumen { background: linear-gradient(to bottom, #e0f7fa, #b2ebf2);}
+    #porcentajes { background: linear-gradient(to bottom, #fff3e0, #ffe0b2);}
+    #lenguaje { background: linear-gradient(to bottom, #f3e5f5, #e1bee7);}
+    #longitud { background: linear-gradient(to bottom, #e8f5e9, #c8e6c9);}
+    #conclusion { background: linear-gradient(to bottom, #ffebee, #ffcdd2);}
+
     .panel {
       background: var(--card);
-      border-radius: 12px;
-      padding: 28px;
-      box-shadow: 0 6px 20px rgba(15,23,42,0.06);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.1);
       max-width: var(--max);
       width: 100%;
       opacity:0;
-      transform: translateY(20px);
-      transition: all 0.8s cubic-bezier(.2,.9,.2,1);
+      transform: translateY(40px);
+      transition: all 0.9s cubic-bezier(.2,.9,.2,1);
     }
 
     .panel.visible {
@@ -54,154 +96,145 @@
       transform: translateY(0);
     }
 
-    h1, h2, h3 {
-      margin-top:0;
-    }
-
-    h1 {
-      font-size: clamp(28px, 4vw, 44px);
-      margin-bottom: 12px;
-    }
-
-    h2 {
-      font-size: clamp(24px,3vw,36px);
-      margin-bottom:12px;
-    }
-
-    p.lead {
-      font-size: 18px;
-      line-height: 1.6;
-      color: var(--muted);
-    }
-
-    .small {
-      font-size: 14px;
-      color: var(--muted);
-    }
+    h1, h2, h3 { margin-top:0; }
+    h1 { font-size: clamp(28px, 5vw, 48px); margin-bottom: 16px; }
+    h2 { font-size: clamp(24px, 4vw, 36px); margin-bottom:12px; }
+    p.lead { font-size: 18px; line-height: 1.7; color: var(--muted); }
+    .small { font-size: 14px; color: var(--muted); }
 
     .viz {
-      margin-top:18px;
+      margin-top:20px;
       width:100%;
       height:600px;
       display:flex;
       justify-content:center;
       align-items:center;
-      border-radius:8px;
+      border-radius:12px;
       overflow:hidden;
       background: linear-gradient(180deg,#fff,#fafafa);
+      transform: translateY(0);
+      transition: transform 0.3s ease-out;
     }
 
-    .viz img {
-      width:100%;
-      height:auto;
-      object-fit:contain;
-    }
+    .viz img { width:100%; height:auto; object-fit:contain; }
 
     footer {
       text-align:center;
       padding: 40px 20px;
       color: var(--muted);
       font-size: 13px;
+      background:#f7f7f9;
+      margin-top:60px;
     }
 
-    a.repo {
-      color: var(--accent);
-      font-weight:600;
-    }
+    a.repo { color: var(--accent); font-weight:600; }
 
     @media (max-width:880px){
-      .viz { height: 400px; }
+      nav { display:none; }
+      .content { margin-left:0; width:100%; }
+      .viz { height:400px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Sección Introducción -->
-  <section class="section">
-    <div class="panel">
-      <h1>El eco del ciberbullying durante la pandemia del año 2020</h1>
-      <p class="lead">
-      El encierro no solo nos aisló físicamente; si no que también amplificó las voces del ciberbullying.
-Durante la pandemia de 2020, la vida de millones de estudiantes cambió por completo: las aulas se trasladaron a la virtualidad y las redes sociales se transformaron en su principal punto de encuentro y desahogo del hostigamiento del encierro. Sin embargo, en ese nuevo espacio virtual aparecieron ataques y las burlas. El ciberbullying es una de las expresiones más comunes de la violencia digital se hizo más reiterativo en medio del confinamiento, dejando huellas profundas en la vida emocional de muchos jóvenes y adolescentes.
-Este trabajo busca comprender cómo se manifestó el ciberacoso durante la pandemia, a partir del análisis del Cyberbullying Classification Dataset que contiene más de 47.000 tweets etiquetados según la clase de ciberacoso: Edad, Etnicidad, Género, Religión, Otros tipos de ciberacoso, No ciberacoso disponible en Kaggle. Más allá de identificar cifras, se quiere dar visibilidad a las formas de violencia digital que se multiplicaron en los meses de aislamiento, cuando las redes se convirtieron en el principal espacio para estudiar, conversar y estar cerca. A través del análisis de datos, se entenderá cómo la crisis de salud también provocó una crisis comunicativa y emocional, que dejó a relucir los miedos, la frustración y el dolor que muchas personas vivieron detrás de la pantalla.
+  <!-- Menú lateral -->
+  <nav>
+    <a href="#intro">Introducción</a>
+    <a href="#volumen">Volumen</a>
+    <a href="#porcentajes">Porcentajes</a>
+    <a href="#lenguaje">Lenguaje</a>
+    <a href="#longitud">Longitud</a>
+    <a href="#conclusion">Conclusión</a>
+  </nav>
 
-      <p class="small">Equipo: Lilia (redacción y análisis) • Visualizaciones: Tableau • Repositorio: <a class="repo" href="https://github.com/liliaambulua2025-spec/violencia-digital-pudding" target="_blank">liliaambulua2025-spec/violencia-digital-pudding</a></p>
-    </div>
-  </section>
-
-  <!-- Sección Volumen -->
-  <section class="section">
-    <div class="panel">
-      <h2>¿Qué tan grande fue el problema?</h2>
-      <p class="small">Cantidad total de tweets y distribución por tipo de ciberacoso durante 2020.</p>
-      <div class="viz">
-        <iframe src="https://public.tableau.com/views/observatorio_17621986227370/Hoja1?:embed=y&:display_count=yes&:showVizHome=no" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+  <div class="content">
+    <!-- Introducción -->
+    <section id="intro" class="section">
+      <div class="panel">
+        <h1>El eco del ciberbullying durante la pandemia del año 2020</h1>
+        <p class="lead">El encierro no solo nos aisló físicamente; sino que también amplificó las voces del ciberbullying...</p>
+        <p class="small">Equipo: Lilia • Visualizaciones: Tableau • Repositorio: <a class="repo" href="https://github.com/liliaambulua2025-spec/violencia-digital-pudding" target="_blank">ver repo</a></p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Sección Porcentajes -->
-  <section class="section">
-    <div class="panel">
-      <h2>Proporciones: ¿qué tipo de acoso fue más común?</h2>
-      <p class="small">Porcentaje por tipo de ciberbullying.</p>
-      <div class="viz">
-        <iframe src="https://public.tableau.com/views/GraficoportipodeCiberbullying/Hoja3?:embed=y&:display_count=yes&:showVizHome=no" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+    <!-- Volumen -->
+    <section id="volumen" class="section">
+      <div class="panel">
+        <h2>¿Qué tan grande fue el problema?</h2>
+        <p class="small">Cantidad total de tweets y distribución por tipo de ciberacoso durante 2020.</p>
+        <div class="viz">
+          <iframe src="https://public.tableau.com/views/observatorio_17621986227370/Hoja1?:embed=y&:display_count=yes&:showVizHome=no" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Sección Nube de palabras -->
-  <section class="section">
-    <div class="panel">
-      <h2>El lenguaje del acoso</h2>
-      <p class="small">Nube de palabras global y por categoría para identificar los términos más frecuentes en los ataques.</p>
-      <div class="viz">
-        <img src="nube de palabras.png" alt="Nube de palabras global">
+    <!-- Porcentajes -->
+    <section id="porcentajes" class="section">
+      <div class="panel">
+        <h2>Proporciones: ¿qué tipo de acoso fue más común?</h2>
+        <p class="small">Porcentaje por tipo de ciberbullying.</p>
+        <div class="viz">
+          <iframe src="https://public.tableau.com/views/GraficoportipodeCiberbullying/Hoja3?:embed=y&:display_count=yes&:showVizHome=no" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+        </div>
       </div>
-      <div class="viz">
-        <img src="images/nube_palabras_por_tipo.png" alt="Nube de palabras por tipo">
+    </section>
+
+    <!-- Lenguaje / Nube de palabras -->
+    <section id="lenguaje" class="section">
+      <div class="panel">
+        <h2>El lenguaje del acoso</h2>
+        <p class="small">Nube de palabras global y por categoría.</p>
+        <div class="viz"><img src="images/nube_palabras_global.png" alt="Nube de palabras global"></div>
+        <div class="viz"><img src="images/nube_palabras_por_tipo.png" alt="Nube de palabras por tipo"></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Sección Longitud y palabras clave -->
-  <section class="section">
-    <div class="panel">
-      <h2>Cómo se expresa el ataque: longitud y palabras clave</h2>
-      <p class="small">Longitud promedio de los textos por tipo de ciberbullying y palabras clave más comunes.</p>
-      <div class="viz">
-        <iframe src="https://public.tableau.com/views/GraficoLongituddeltextoportipodeciberbullying/Hoja4?:embed=y&:display_count=yes&:showVizHome=no" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+    <!-- Longitud y palabras clave -->
+    <section id="longitud" class="section">
+      <div class="panel">
+        <h2>Cómo se expresa el ataque: longitud y palabras clave</h2>
+        <p class="small">Longitud promedio de los textos por tipo de ciberbullying y palabras clave más comunes.</p>
+        <div class="viz">
+          <iframe src="https://public.tableau.com/views/GraficoLongituddeltextoportipodeciberbullying/Hoja4?:embed=y&:display_count=yes&:showVizHome=no" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Sección Conclusión -->
-  <section class="section">
-    <div class="panel">
-      <h2>Conclusión</h2>
-      <p>Los datos muestran que la violencia digital en 2020 no fue un accidente: hay patrones, consistencias y temas recurrentes que hablan de desigualdades sociales. Comprenderlos nos ayuda a diseñar respuestas más humanas: educación digital, acompañamiento emocional y políticas de convivencia en línea.</p>
-      <p class="small"><strong>¿Qué sigue?</strong> Exportar estos hallazgos en programas escolares, campañas de sensibilización y líneas de apoyo para jóvenes que sufren acoso en redes.</p>
-    </div>
-  </section>
+    <!-- Conclusión -->
+    <section id="conclusion" class="section">
+      <div class="panel">
+        <h2>Conclusión</h2>
+        <p>Los datos muestran que la violencia digital en 2020 no fue un accidente...</p>
+        <p class="small"><strong>¿Qué sigue?</strong> Exportar estos hallazgos en programas escolares, campañas de sensibilización y líneas de apoyo.</p>
+      </div>
+    </section>
 
-  <footer>
-    Proyecto colaborativo • <a class="repo" href="https://github.com/liliaambulua2025-spec/violencia-digital-pudding" target="_blank">liliaambulua2025-spec/violencia-digital-pudding</a>
-  </footer>
+    <footer>
+      Proyecto colaborativo • <a class="repo" href="https://github.com/liliaambulua2025-spec/violencia-digital-pudding" target="_blank">ver repo</a>
+    </footer>
+  </div>
 
   <script>
-    // Scroll reveal
+    // Scroll reveal + efecto parallax ligero en visualizaciones
     const observer = new IntersectionObserver((entries)=>{
       entries.forEach(entry=>{
         if(entry.isIntersecting){
           entry.target.classList.add('visible');
+          const viz = entry.target.querySelector('.viz');
+          if(viz) {
+            window.addEventListener('scroll', ()=>{
+              const rect = entry.target.getBoundingClientRect();
+              const offset = rect.top * 0.05;
+              viz.style.transform = `translateY(${offset}px)`;
+            });
+          }
         }
-      })
+      });
     }, {threshold:0.2});
     document.querySelectorAll('.panel').forEach(panel=>{
       observer.observe(panel);
     });
   </script>
-
 </body>
 </html>
