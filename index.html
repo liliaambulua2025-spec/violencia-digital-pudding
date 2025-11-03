@@ -1,240 +1,205 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>El eco del ciberbullying durante la pandemia del año 2020</title>
-  <meta name="description" content="Investigación periodística de datos sobre ciberbullying en la pandemia de 2020">
-  <style>
-    :root {
-      --bg:#f7f7f9;
-      --card:#fff;
-      --text:#111827;
-      --muted:#6b7280;
-      --accent:#6d28d9;
-      --max:920px;
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>El eco del ciberbullying - Scrollytelling</title>
+<meta name="description" content="Investigación periodística de datos sobre ciberbullying en la pandemia de 2020">
+<style>
+/* --- Variables y tipografía --- */
+:root{
+  --bg:#fbfbfc; 
+  --text:#111827; 
+  --muted:#6b7280; 
+  --accent:#6d28d9;
+  font-family:'Inter', sans-serif;
+}
+body{
+  margin:0; 
+  background:var(--bg); 
+  color:var(--text); 
+  overflow-x:hidden;
+}
+/* --- Contenedor de visualización fija --- */
+.viz-container{
+  position:fixed;
+  top:20px;
+  right:20px;
+  width:45%;
+  height:90vh;
+  border-radius:12px;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:0 12px 36px rgba(0,0,0,0.1);
+  z-index:10;
+}
+.viz-container iframe, .viz-container img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
+/* --- Secciones de scroll --- */
+.section{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  padding:0 8%;
+  box-sizing:border-box;
+}
+.panel{
+  max-width:600px;
+  opacity:0;
+  transform: translateY(40px);
+  transition: all 0.9s ease-out;
+}
+.panel.visible{
+  opacity:1;
+  transform: translateY(0);
+}
+h1{
+  font-size:clamp(24px,3vw,36px);
+  margin-bottom:12px;
+}
+p{
+  font-size:16px;
+  line-height:1.6;
+  color:#4b5563;
+}
+.caption{
+  font-size:14px;
+  color:#6b7280;
+  margin-top:12px;
+}
 
-    body {
-      margin:0;
-      background: var(--bg);
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
-      display: flex;
-    }
+/* --- Menu lateral --- */
+.menu{
+  position:fixed;
+  top:50%;
+  left:20px;
+  transform:translateY(-50%);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  z-index:15;
+}
+.menu a{
+  text-decoration:none;
+  color:var(--accent);
+  font-weight:600;
+  font-size:14px;
+}
 
-    /* Menú lateral fijo */
-    nav {
-      position: fixed;
-      top:0;
-      left:0;
-      height:100vh;
-      width:200px;
-      background:#fff;
-      border-right:1px solid #e0e0e0;
-      display:flex;
-      flex-direction:column;
-      padding:40px 20px;
-      box-sizing:border-box;
-      z-index:1000;
-    }
-
-    nav a {
-      text-decoration:none;
-      color: var(--text);
-      margin-bottom:16px;
-      font-weight:500;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: var(--accent);
-    }
-
-    .content {
-      margin-left:220px;
-      width: calc(100% - 220px);
-    }
-
-    .section {
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding: 60px 20px;
-      box-sizing: border-box;
-      position: relative;
-    }
-
-    /* Fondos distintos por sección */
-    #intro { background: linear-gradient(to bottom, #f7f7f9, #eaeaf3);}
-    #volumen { background: linear-gradient(to bottom, #e0f7fa, #b2ebf2);}
-    #porcentajes { background: linear-gradient(to bottom, #fff3e0, #ffe0b2);}
-    #lenguaje { background: linear-gradient(to bottom, #f3e5f5, #e1bee7);}
-    #longitud { background: linear-gradient(to bottom, #e8f5e9, #c8e6c9);}
-    #conclusion { background: linear-gradient(to bottom, #ffebee, #ffcdd2);}
-
-    .panel {
-      background: var(--card);
-      border-radius: 20px;
-      padding: 32px;
-      box-shadow: 0 12px 36px rgba(0,0,0,0.1);
-      max-width: var(--max);
-      width: 100%;
-      opacity:0;
-      transform: translateY(40px);
-      transition: all 0.9s cubic-bezier(.2,.9,.2,1);
-    }
-
-    .panel.visible {
-      opacity:1;
-      transform: translateY(0);
-    }
-
-    h1, h2, h3 { margin-top:0; }
-    h1 { font-size: clamp(28px, 5vw, 48px); margin-bottom: 16px; }
-    h2 { font-size: clamp(24px, 4vw, 36px); margin-bottom:12px; }
-    p.lead { font-size: 18px; line-height: 1.7; color: var(--muted); }
-    .small { font-size: 14px; color: var(--muted); }
-
-    .viz {
-      margin-top:20px;
-      width:100%;
-      height:600px;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      border-radius:12px;
-      overflow:hidden;
-      background: linear-gradient(180deg,#fff,#fafafa);
-      transform: translateY(0);
-      transition: transform 0.3s ease-out;
-    }
-
-    .viz img { width:100%; height:auto; object-fit:contain; }
-
-    footer {
-      text-align:center;
-      padding: 40px 20px;
-      color: var(--muted);
-      font-size: 13px;
-      background:#f7f7f9;
-      margin-top:60px;
-    }
-
-    a.repo { color: var(--accent); font-weight:600; }
-
-    @media (max-width:880px){
-      nav { display:none; }
-      .content { margin-left:0; width:100%; }
-      .viz { height:400px; }
-    }
-  </style>
+/* --- Responsive --- */
+@media(max-width:1024px){
+  .viz-container{
+    width:90%;
+    left:50%;
+    top:10px;
+    transform:translateX(-50%);
+  }
+  .section{
+    justify-content:center;
+    text-align:center;
+    padding:0 5%;
+  }
+}
+</style>
 </head>
 <body>
 
-  <!-- Menú lateral -->
-  <nav>
-    <a href="#intro">Introducción</a>
-    <a href="#volumen">Volumen</a>
-    <a href="#porcentajes">Porcentajes</a>
-    <a href="#lenguaje">Lenguaje</a>
-    <a href="#longitud">Longitud</a>
-    <a href="#conclusion">Conclusión</a>
-  </nav>
+<!-- Menu lateral -->
+<div class="menu">
+  <a href="#volumen">Volumen</a>
+  <a href="#porcentajes">Porcentajes</a>
+  <a href="#nube-global">Nube global</a>
+  <a href="#nube-tipo">Nube por tipo</a>
+  <a href="#longitud">Longitud y palabras clave</a>
+  <a href="#conclusion">Conclusión</a>
+</div>
 
-  <div class="content">
-    <!-- Introducción -->
-    <section id="intro" class="section">
-      <div class="panel">
-        <h1>El eco del ciberbullying durante la pandemia del año 2020</h1>
-        <p class="lead">El encierro no solo nos aisló físicamente; sino que también amplificó las voces del ciberbullying...</p>
-        <p class="small">Equipo: Lilia • Visualizaciones: Tableau • Repositorio: <a class="repo" href="https://github.com/liliaambulua2025-spec/violencia-digital-pudding" target="_blank">ver repo</a></p>
-      </div>
-    </section>
+<!-- Contenedor de visualización -->
+<div class="viz-container" id="viz-container">
+  <iframe src="https://public.tableau.com/views/observatorio_17621986227370/Hoja1?:embed=y&:display_count=yes&:showVizHome=no" frameborder="0"></iframe>
+</div>
 
-    <!-- Volumen -->
-    <section id="volumen" class="section">
-      <div class="panel">
-        <h2>¿Qué tan grande fue el problema?</h2>
-        <p class="small">Cantidad total de tweets y distribución por tipo de ciberacoso durante 2020.</p>
-        <div class="viz">
-          <iframe src="https://public.tableau.com/views/observatorio_17621986227370/Hoja1?:embed=y&:display_count=yes&:showVizHome=no" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
-        </div>
-      </div>
-    </section>
-
-    <!-- Porcentajes -->
-    <section id="porcentajes" class="section">
-      <div class="panel">
-        <h2>Proporciones: ¿qué tipo de acoso fue más común?</h2>
-        <p class="small">Porcentaje por tipo de ciberbullying.</p>
-        <div class="viz">
-          <iframe src="https://public.tableau.com/views/GraficoportipodeCiberbullying/Hoja3?:embed=y&:display_count=yes&:showVizHome=no" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
-        </div>
-      </div>
-    </section>
-
-    <!-- Lenguaje / Nube de palabras -->
-    <section id="lenguaje" class="section">
-      <div class="panel">
-        <h2>El lenguaje del acoso</h2>
-        <p class="small">Nube de palabras global y por categoría.</p>
-        <div class="viz"><img src="images/nube_palabras_global.png" alt="Nube de palabras global"></div>
-        <div class="viz"><img src="images/nube_palabras_por_tipo.png" alt="Nube de palabras por tipo"></div>
-      </div>
-    </section>
-
-    <!-- Longitud y palabras clave -->
-    <section id="longitud" class="section">
-      <div class="panel">
-        <h2>Cómo se expresa el ataque: longitud y palabras clave</h2>
-        <p class="small">Longitud promedio de los textos por tipo de ciberbullying y palabras clave más comunes.</p>
-        <div class="viz">
-          <iframe src="https://public.tableau.com/views/GraficoLongituddeltextoportipodeciberbullying/Hoja4?:embed=y&:display_count=yes&:showVizHome=no" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
-        </div>
-      </div>
-    </section>
-
-    <!-- Conclusión -->
-    <section id="conclusion" class="section">
-      <div class="panel">
-        <h2>Conclusión</h2>
-        <p>Los datos muestran que la violencia digital en 2020 no fue un accidente...</p>
-        <p class="small"><strong>¿Qué sigue?</strong> Exportar estos hallazgos en programas escolares, campañas de sensibilización y líneas de apoyo.</p>
-      </div>
-    </section>
-
-    <footer>
-      Proyecto colaborativo • <a class="repo" href="https://github.com/liliaambulua2025-spec/violencia-digital-pudding" target="_blank">ver repo</a>
-    </footer>
+<!-- Secciones de scroll -->
+<section class="section" id="volumen" data-viz="observatorio">
+  <div class="panel">
+    <h1>Volumen del ciberbullying en 2020</h1>
+    <p>Cantidad total de tweets y distribución por tipo de ciberacoso durante la pandemia.</p>
   </div>
+</section>
 
-  <script>
-    // Scroll reveal + efecto parallax ligero en visualizaciones
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          entry.target.classList.add('visible');
-          const viz = entry.target.querySelector('.viz');
-          if(viz) {
-            window.addEventListener('scroll', ()=>{
-              const rect = entry.target.getBoundingClientRect();
-              const offset = rect.top * 0.05;
-              viz.style.transform = `translateY(${offset}px)`;
-            });
-          }
+<section class="section" id="porcentajes" data-viz="porcentajes">
+  <div class="panel">
+    <h1>Tipos de acoso más comunes</h1>
+    <p>Porcentaje por tipo de ciberbullying. La apariencia física y el género son las categorías predominantes.</p>
+  </div>
+</section>
+
+<section class="section" id="nube-global" data-viz="nube-global">
+  <div class="panel">
+    <h1>Lenguaje del acoso</h1>
+    <p>Nube de palabras global para identificar términos recurrentes en los ataques.</p>
+  </div>
+</section>
+
+<section class="section" id="nube-tipo" data-viz="nube-tipo">
+  <div class="panel">
+    <h1>Nube de palabras por tipo</h1>
+    <p>Visualización por categoría de ciberacoso.</p>
+  </div>
+</section>
+
+<section class="section" id="longitud" data-viz="longitud">
+  <div class="panel">
+    <h1>Longitud y palabras clave</h1>
+    <p>Promedio de longitud de los textos y palabras más usadas según tipo de ciberbullying.</p>
+  </div>
+</section>
+
+<section class="section" id="conclusion" data-viz="conclusion">
+  <div class="panel">
+    <h1>Conclusión</h1>
+    <p>Los datos muestran patrones y desigualdades sociales. Esto permite diseñar estrategias de educación digital y acompañamiento emocional.</p>
+  </div>
+</section>
+
+<script>
+// Mapa de visualizaciones
+const vizMap = {
+  "observatorio":"https://public.tableau.com/views/observatorio_17621986227370/Hoja1?:embed=y&:display_count=yes&:showVizHome=no",
+  "porcentajes":"https://public.tableau.com/views/GraficoportipodeCiberbullying/Hoja3?:embed=y&:display_count=yes&:showVizHome=no",
+  "nube-global":"images/nube_palabras_global.png",
+  "nube-tipo":"images/nube_palabras_por_tipo.png",
+  "longitud":"https://public.tableau.com/views/GraficoLongituddeltextoportipodeciberbullying/Hoja4?:embed=y&:display_count=yes&:showVizHome=no",
+  "conclusion":"images/conclusion.png"
+};
+
+// Contenedor de visualización
+const vizContainer = document.getElementById('viz-container');
+const sections = document.querySelectorAll('.section');
+
+// Animar paneles y cambiar visualización
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.querySelector('.panel').classList.add('visible');
+      const vizKey = entry.target.dataset.viz;
+      if(vizMap[vizKey]){
+        if(vizMap[vizKey].endsWith(".png")){
+          vizContainer.innerHTML = `<img src="${vizMap[vizKey]}" alt="${vizKey}">`;
+        } else {
+          vizContainer.innerHTML = `<iframe src="${vizMap[vizKey]}" frameborder="0"></iframe>`;
         }
-      });
-    }, {threshold:0.2});
-    document.querySelectorAll('.panel').forEach(panel=>{
-      observer.observe(panel);
-    });
-  </script>
+      }
+    }
+  });
+},{threshold:0.4});
+
+sections.forEach(s => observer.observe(s));
+</script>
 </body>
 </html>
