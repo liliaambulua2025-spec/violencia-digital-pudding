@@ -36,6 +36,7 @@
     .reveal{opacity:0; transform:translateY(18px); transition:all .7s cubic-bezier(.2,.9,.2,1)}
     .reveal.visible{opacity:1; transform:none}
 
+    /* responsive */
     @media (max-width:880px){
       .split{grid-template-columns:1fr}
       .viz{height:360px}
@@ -48,34 +49,29 @@
       <div class="kicker">Investigación de datos</div>
       <h1>El eco del ciberbullying durante la pandemia del año 2020.</h1>
       <p class="lead">
-        El encierro no solo nos aisló físicamente; también amplificó las voces del ciberbullying.<br>
-        Durante la pandemia de 2020, la vida de millones de estudiantes cambió: las aulas se trasladaron a la virtualidad y las redes sociales se convirtieron en su principal espacio de interacción y, lamentablemente, de hostigamiento. 
-        Este trabajo analiza el <strong>Cyberbullying Classification Dataset</strong> de Kaggle (más de 47.000 tweets) para entender cómo se manifestó el ciberacoso según Edad, Etnicidad, Género, Religión, Otros y No ciberacoso.
+        El encierro no solo nos aisló físicamente; si no que también amplificó las voces del ciberbullying.<br>
+        Durante la pandemia de 2020, la vida de millones de estudiantes cambió por completo: las aulas se trasladaron a la virtualidad y las redes sociales se transformaron en su principal punto de encuentro y desahogo del hostigamiento del encierro. Sin embargo, en ese nuevo espacio virtual aparecieron ataques y las burlas. El ciberbullying es una de las expresiones más comunes de la violencia digital se hizo más reiterativo en medio del confinamiento, dejando huellas profundas en la vida emocional de muchos jóvenes y adolescentes.
+        Este trabajo busca comprender cómo se manifestó el ciberacoso durante la pandemia, a partir del análisis del Cyberbullying Classification Dataset que contiene más de 47.000 tweets etiquetados según la clase de ciberacoso: Edad, Etnicidad, Género, Religión, Otros tipos de ciberacoso, No ciberacoso disponible en Kaggle. Más allá de identificar cifras, se quiere dar visibilidad a las formas de violencia digital que se multiplicaron en los meses de aislamiento, cuando las redes se convirtieron en el principal espacio para estudiar, conversar y estar cerca. A través del análisis de datos, se entenderá cómo la crisis de salud también provocó una crisis comunicativa y emocional, que dejó a relucir los miedos, la frustración y el dolor que muchas personas vivieron detrás de la pantalla.
       </p>
       <div class="meta">
         Equipo: Lilia (redacción y análisis) • Visualizaciones: Tableau • Repositorio: 
-        <a class="repo" href="https://github.com/liliaambulua2025-spec/violencia-digital-pudding" target="_blank">
-          liliaambulua2025-spec/violencia-digital-pudding
-        </a>
+        <a class="repo" href="https://github.com/liliaambulua2025-spec/violencia-digital-pudding" target="_blank">liliaambulua2025-spec/violencia-digital-pudding</a>
       </div>
     </header>
 
-    <!-- Section: volumen -->
+    <!-- Volumen -->
     <section class="stage reveal" id="volumen">
       <div class="panel">
         <h2>¿Qué tan grande fue el problema?</h2>
         <p class="small">Cantidad total de tweets y distribución por tipo de ciberacoso durante 2020.</p>
         <div class="viz">
-          <iframe 
-            src="https://public.tableau.com/views/observatorio_17621986227370/Hoja1?:showVizHome=no&:embed=true"
-            width="100%" height="600" frameborder="0" scrolling="no">
-          </iframe>
+          <iframe src="https://public.tableau.com/views/observatorio_17621986227370/Hoja1?:language=en-US&:embed=true" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
         </div>
         <p class="caption">Los picos más altos coinciden con los meses de mayor confinamiento; el incremento de interacciones online facilitó la circulación de discursos de odio.</p>
       </div>
     </section>
 
-    <!-- Section: porcentajes -->
+    <!-- Porcentajes -->
     <section class="stage reveal" id="porcentajes">
       <div class="panel">
         <h2>Proporciones: ¿qué tipo de acoso fue más común?</h2>
@@ -83,66 +79,47 @@
           <div>
             <p class="small">Porcentaje por tipo de ciberbullying. Estos porcentajes ayudan a identificar qué temas concentran mayor agresividad online.</p>
             <div class="viz">
-              <iframe 
-                src="https://public.tableau.com/views/observatorio_17621986227370/Hoja2?:showVizHome=no&:embed=true"
-                width="100%" height="600" frameborder="0" scrolling="no">
-              </iframe>
+              <iframe src="https://public.tableau.com/views/Graficocantidaddetweets/Hoja2?:language=es-ES&publish=yes&:embed=true" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
             </div>
             <p class="caption">La apariencia física y el género aparecen como categorías mayoritarias en las conversaciones agresivas.</p>
           </div>
           <aside class="panel">
             <h3>Interpretación breve</h3>
-            <p class="small">Que la apariencia y el género figuren al tope refleja prejuicios preexistentes que se trasladan al espacio digital; la pandemia amplificó su visibilidad.</p>
+            <p class="small">Que la apariencia y el género figuren al tope refleja prejuicios preexistentes que se trasladan al espacio digital; la pandemia sencillamente amplificó su visibilidad.</p>
           </aside>
         </div>
       </div>
     </section>
 
-    <!-- Section: lenguaje -->
+    <!-- Lenguaje / Nube de palabras -->
     <section class="stage reveal" id="lenguaje">
       <div class="panel">
         <h2>El lenguaje del acoso</h2>
         <p class="small">Nube de palabras global y por categoría para identificar los términos más frecuentes en los ataques.</p>
         <div class="viz">
-          <iframe 
-            src="https://public.tableau.com/views/observatorio_17621986227370/Hoja3?:showVizHome=no&:embed=true"
-            width="100%" height="600" frameborder="0" scrolling="no">
-          </iframe>
-        </div>
-        <div style="height:16px"></div>
-        <div class="viz">
-          <iframe 
-            src="https://public.tableau.com/views/observatorio_17621986227370/Hoja4?:showVizHome=no&:embed=true"
-            width="100%" height="600" frameborder="0" scrolling="no">
-          </iframe>
+          <iframe src="https://public.tableau.com/views/Nubedepalabras_17621991281100/Hoja16?:language=es-ES&publish=yes&:embed=true" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
         </div>
         <p class="caption">Las nubes muestran insultos recurrentes y temas sensibles; sirven para entender el tenor emocional del discurso.</p>
       </div>
     </section>
 
-    <!-- Section: longitud y palabras clave -->
+    <!-- Longitud y palabras clave -->
     <section class="stage reveal" id="longitud">
       <div class="panel">
         <h2>Cómo se expresa el ataque: longitud y palabras clave</h2>
         <p class="small">Longitud promedio de los textos por tipo de ciberbullying y palabras clave más comunes.</p>
         <div class="viz">
-          <iframe 
-            src="https://public.tableau.com/views/observatorio_17621986227370/Hoja5?:showVizHome=no&:embed=true"
-            width="100%" height="600" frameborder="0" scrolling="no">
-          </iframe>
+          <iframe src="https://public.tableau.com/views/GraficoLongituddeltextoportipodeciberbullying/Hoja4?:language=es-ES&publish=yes&:embed=true" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
         </div>
         <div style="height:18px"></div>
         <div class="viz">
-          <iframe 
-            src="https://public.tableau.com/views/observatorio_17621986227370/Hoja6?:showVizHome=no&:embed=true"
-            width="100%" height="600" frameborder="0" scrolling="no">
-          </iframe>
+          <iframe src="https://public.tableau.com/views/GraficoPalabrasclavemascomunes/Hoja5?:language=es-ES&publish=yes&:embed=true" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
         </div>
         <p class="caption">Los mensajes breves suelen ser ataques más directos y emocionales; los más largos pueden esconder argumentos o sarcasmo.</p>
       </div>
     </section>
 
-    <!-- Section: conclusión -->
+    <!-- Conclusión -->
     <section class="stage reveal" id="conclusion">
       <div class="panel">
         <h2>Conclusión</h2>
@@ -152,4 +129,19 @@
     </section>
 
     <footer>
-      <p>Proyecto colaborativo • <a class="repo" href="https://github.com/liliaambulua2025-spec/violencia-digital-pudding" target="_blank">liliaambulua2025-spec/violencia-digital-pudding</a
+      <p>Proyecto colaborativo • <a class="repo" href="https://github.com/liliaambulua2025-spec/violencia-digital-pudding" target="_blank">liliaambulua2025-spec/violencia-digital-pudding</a></p>
+      <p style="margin-top:6px">Exporta a PDF desde el navegador (Archivo → Imprimir → Guardar como PDF) para entrega.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add('visible')
+      })
+    }, {threshold:0.12})
+    document.querySelectorAll('.reveal').forEach(s=>observer.observe(s))
+  </script>
+</body>
+</html>
