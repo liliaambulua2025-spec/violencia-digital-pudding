@@ -11,7 +11,7 @@
       --max:920px;
       font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     }
-    html,body{height:100%; margin:0; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased}
+    html,body{height:auto; margin:0; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; scroll-behavior: smooth;}
     .wrap{max-width:var(--max); margin:40px auto; padding:28px}
     .hero{display:grid; grid-template-columns:1fr; gap:18px; align-items:center}
     .kicker{color:var(--accent); font-weight:700; letter-spacing:.06em}
@@ -49,9 +49,8 @@
       <div class="kicker">Investigación de datos</div>
       <h1>El eco del ciberbullying durante la pandemia del año 2020.</h1>
       <p class="lead">
-        El encierro no solo nos aisló físicamente; si no que también amplificó las voces del ciberbullying.<br>
-        Durante la pandemia de 2020, la vida de millones de estudiantes cambió por completo: las aulas se trasladaron a la virtualidad y las redes sociales se transformaron en su principal punto de encuentro y desahogo del hostigamiento del encierro. Sin embargo, en ese nuevo espacio virtual aparecieron ataques y las burlas. El ciberbullying es una de las expresiones más comunes de la violencia digital se hizo más reiterativo en medio del confinamiento, dejando huellas profundas en la vida emocional de muchos jóvenes y adolescentes.
-        Este trabajo busca comprender cómo se manifestó el ciberacoso durante la pandemia, a partir del análisis del Cyberbullying Classifiication Dataset que contiene más de 47.000 tweets etiquetados según la clase de ciberacoso: Edad, Etnicidad, Género, Religión, Otros tipos de ciberacoso, No ciberacoso disponible en Kaggle. Más allá de identificar cifras, se quiere dar visibilidad a las formas de violencia digital que se multiplicaron en los meses de aislamiento, cuando las redes se convirtieron en el principal espacio para estudiar, conversar y estar cerca. A través del análisis de datos, se entenderá cómo la crisis de salud también provocó una crisis comunicativa y emocional, que dejó a relucir los miedos, la frustración y el dolor que muchas personas vivieron detrás de la pantalla.
+        El encierro no solo nos aisló físicamente; sino que también amplificó las voces del ciberbullying.<br>
+        Durante la pandemia de 2020, la vida de millones de estudiantes cambió por completo: las aulas se trasladaron a la virtualidad y las redes sociales se transformaron en su principal punto de encuentro y desahogo del hostigamiento del encierro. Sin embargo, en ese nuevo espacio virtual aparecieron ataques y las burlas. El ciberbullying es una de las expresiones más comunes de la violencia digital y se hizo más reiterativo en medio del confinamiento, dejando huellas profundas en la vida emocional de muchos jóvenes y adolescentes.
       </p>
       <div class="meta">
         Equipo: Lilia (redacción y análisis) • Visualizaciones: Tableau • Repositorio: 
@@ -65,15 +64,15 @@
         <h2>¿Qué tan grande fue el problema?</h2>
         <p class="small">Cantidad total de tweets y distribución por tipo de ciberacoso durante 2020.</p>
         <div class="viz">
-  <iframe
-    src="https://public.tableau.com/views/observatorio_17621986227370/Hoja1?:embed=y&:display_count=yes&:showVizHome=no"
-    width="100%"
-    height="600"
-    frameborder="0"
-    scrolling="no">
-  </iframe>
-</div>
-
+          <iframe
+            src="https://public.tableau.com/views/observatorio_17621986227370/Hoja1?:embed=y&:display_count=yes&:showVizHome=no"
+            width="100%"
+            height="600"
+            frameborder="0"
+            scrolling="no">
+          </iframe>
+        </div>
+      </div>
     </section>
 
     <!-- Porcentajes -->
@@ -84,15 +83,14 @@
           <div>
             <p class="small">Porcentaje por tipo de ciberbullying. Estos porcentajes ayudan a identificar qué temas concentran mayor agresividad online.</p>
             <div class="viz">
-  <iframe
-    src="https://public.tableau.com/views/GraficoportipodeCiberbullying/Hoja3?:embed=y&:display_count=yes&:showVizHome=no"
-    width="100%"
-    height="600"
-    frameborder="0"
-    scrolling="no">
-  </iframe>
-</div>
-
+              <iframe
+                src="https://public.tableau.com/views/GraficoportipodeCiberbullying/Hoja3?:embed=y&:display_count=yes&:showVizHome=no"
+                width="100%"
+                height="600"
+                frameborder="0"
+                scrolling="no">
+              </iframe>
+            </div>
             <p class="caption">La apariencia física y el género aparecen como categorías mayoritarias en las conversaciones agresivas.</p>
           </div>
           <aside class="panel">
@@ -108,62 +106,41 @@
       <div class="panel">
         <h2>El lenguaje del acoso</h2>
         <p class="small">Nube de palabras global y por categoría para identificar los términos más frecuentes en los ataques.</p>
+
+        <!-- Nube de palabras global -->
         <div class="viz">
-  <iframe
-   <img src="nube de palabras.png" alt="Nube de palabras global" style="width:100%; height:auto; object-fit:contain;">
-   
-  </iframe>
-</div>
+          <img src="images/nube_palabras_global.png" alt="Nube de palabras global" style="width:100%; height:auto; object-fit:contain;">
+        </div>
+
+        <!-- Nube de palabras por tipo -->
+        <div style="height:16px"></div>
+        <div class="viz">
+          <img src="images/nube_palabras_por_tipo.png" alt="Nube de palabras por tipo" style="width:100%; height:auto; object-fit:contain;">
+        </div>
 
         <p class="caption">Las nubes muestran insultos recurrentes y temas sensibles; sirven para entender el tenor emocional del discurso.</p>
       </div>
     </section>
 
-    <!-- Lenguaje / Nube de palabras -->
-<section class="stage reveal" id="lenguaje">
-  <div class="panel">
-    <h2>El lenguaje del acoso</h2>
-    <p class="small">Nube de palabras global y por categoría para identificar los términos más frecuentes en los ataques.</p>
-
-    <!-- Nube de palabras global -->
-    <div class="viz">
-      <img src="images/nube_palabras_global.png" alt="Nube de palabras global" style="width:100%; height:auto; object-fit:contain;">
-    </div>
-
-    <!-- Nube de palabras por tipo -->
-    <div style="height:16px"></div>
-    <div class="viz">
-      <img src="images/nube_palabras_por_tipo.png" alt="Nube de palabras por tipo" style="width:100%; height:auto; object-fit:contain;">
-    </div>
-
-    <p class="caption">Las nubes muestran insultos recurrentes y temas sensibles; sirven para entender el tenor emocional del discurso.</p>
-  </div>
-</section>
-
+    <!-- Longitud y palabras clave -->
+    <section class="stage reveal" id="longitud">
+      <div class="panel">
+        <h2>Cómo se expresa el ataque: longitud y palabras clave</h2>
+        <p class="small">Longitud promedio de los textos por tipo de ciberbullying y palabras clave más comunes.</p>
+        <div class="viz">
+          <iframe
+            src="https://public.tableau.com/views/GraficoLongituddeltextoportipodeciberbullying/Hoja4?:embed=y&:display_count=yes&:showVizHome=no"
+            width="100%"
+            height="600"
+            frameborder="0"
+            scrolling="no">
+          </iframe>
+        </div>
+      </div>
+    </section>
 
     <!-- Conclusión -->
     <section class="stage reveal" id="conclusion">
       <div class="panel">
         <h2>Conclusión</h2>
-        <p>Los datos muestran que la violencia digital en 2020 no fue un accidente: hay patrones, consistencias y temas recurrentes que hablan de desigualdades sociales. Comprenderlos nos ayuda a diseñar respuestas más humanas: educación digital, acompañamiento emocional y políticas de convivencia en línea.</p>
-        <p class="small"><strong>¿Qué sigue?</strong> Exportar estos hallazgos en programas escolares, campañas de sensibilización y líneas de apoyo para jóvenes que sufren acoso en redes.</p>
-      </div>
-    </section>
-
-    <footer>
-      <p>Proyecto colaborativo • <a class="repo" href="https://github.com/liliaambulua2025-spec/violencia-digital-pudding" target="_blank">liliaambulua2025-spec/violencia-digital-pudding</a></p>
-      <p style="margin-top:6px">Exporta a PDF desde el navegador (Archivo → Imprimir → Guardar como PDF) para entrega.</p>
-    </footer>
-  </div>
-
-  <script>
-    // Scroll reveal
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting) e.target.classList.add('visible')
-      })
-    }, {threshold:0.12})
-    document.querySelectorAll('.reveal').forEach(s=>observer.observe(s))
-  </script>
-</body>
-</html>
+        <p>Los datos muestran que la violencia digital en 2020 no fue un accidente: hay patrones, consistencias y temas recurrentes que hablan de desigualdades sociales. Comprenderlos nos ayuda a diseñar respuestas más humanas: educación digital, acompañamiento emocional y polít
