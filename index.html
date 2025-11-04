@@ -175,6 +175,7 @@
       .split {
         grid-template-columns: 1fr;
       }
+
       .viz {
         height: 360px;
       }
@@ -185,7 +186,7 @@
 <body>
   <div class="wrap">
 
-    <!-- Introducción -->
+    <!-- ================= INTRODUCCIÓN ================= -->
     <header class="hero">
       <div class="kicker">Investigación de datos</div>
       <h1>El eco del ciberbullying durante la pandemia del año 2020</h1>
@@ -193,7 +194,7 @@
       <p class="lead">
         El encierro no solo nos aisló físicamente; sino que también amplificó las voces del ciberbullying.
         Durante la pandemia de 2020, la vida de millones de estudiantes cambió por completo:
-        las aulas se trasladaron a la virtualidad y las redes sociales se transformaron en su principal punto de encuentro.
+        las aulas se trasladaron a la virtualidad y las redes sociales se transformaron en su principal punto de encuentro y desahogo del hostigamiento del encierro.
       </p>
 
       <div class="meta">
@@ -204,18 +205,19 @@
       </div>
     </header>
 
-    <!-- Volumen -->
+    <!-- ================= SECCIÓN 1: VOLUMEN ================= -->
     <section class="stage reveal" id="volumen">
       <div class="panel">
         <h2>¿Qué tan grande fue el problema?</h2>
 
         <p>
-          Para entender cómo se manifestó el ciberbullying durante la pandemia, se analizó un conjunto de más de ocho mil publicaciones en Twitter, clasificadas según el tipo de ciberacoso. Este dataset, disponible en Kaggle bajo el nombre <em>Cyberbullying Classification Dataset</em>, sirvió como punto de partida para explorar el lenguaje y los temas que suelen acompañar las agresiones en línea en los entornos educativos.
+          Para entender cómo se manifestó el ciberbullying durante la pandemia, se analizó un conjunto de más de ocho mil publicaciones en Twitter, clasificadas según el tipo de ciberacoso.
+          Este dataset, disponible en Kaggle bajo el nombre <em>Cyberbullying Classification Dataset</em>, sirvió como punto de partida para explorar el lenguaje y los temas que suelen acompañar las agresiones en línea.
         </p>
 
         <figure class="viz">
           <iframe src="https://public.tableau.com/views/observatorio_17621986227370/Hoja1?:embed=y&:display_count=yes&:showVizHome=no"
-            width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+                  width="100%" height="600" frameborder="0" scrolling="no"></iframe>
         </figure>
 
         <figcaption class="caption">
@@ -224,11 +226,122 @@
       </div>
     </section>
 
-    <!-- ... resto de secciones igual con espaciado correcto ... -->
+    <!-- ================= SECCIÓN 2: PORCENTAJES ================= -->
+    <section class="stage reveal" id="porcentajes">
+      <div class="panel">
+        <h2>Proporciones: ¿qué tipo de acoso fue más común?</h2>
 
+        <div class="split">
+          <div>
+            <p>
+              Al analizar la distribución por tipo de ciberbullying, surgieron cinco categorías principales:
+              <br>• Religión (19%)
+              <br>• Edad (16%)
+              <br>• Género (16%)
+              <br>• Etnicidad (15%)
+              <br>• Otros o no clasificados (34%)
+            </p>
+
+            <figure class="viz">
+              <iframe src="https://public.tableau.com/views/GraficoportipodeCiberbullying/Hoja3?:embed=y&:display_count=yes&:showVizHome=no"
+                      width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+            </figure>
+
+            <figcaption class="caption">
+              La apariencia física y el género aparecen como categorías mayoritarias en las conversaciones agresivas.
+            </figcaption>
+          </div>
+
+          <aside class="panel">
+            <h3>Interpretación</h3>
+            <p class="small">
+              Que la apariencia y el género figuren al tope refleja prejuicios preexistentes que se trasladan al espacio digital;
+              la pandemia sencillamente amplificó su visibilidad.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECCIÓN 3: NUBE DE PALABRAS ================= -->
+    <section class="stage reveal" id="lenguaje">
+      <div class="panel">
+        <h2>El lenguaje del acoso</h2>
+
+        <p>
+          Detrás de cada palabra hay una emoción, y a veces, una herida.
+          La nube de palabras revela cómo se expresa el ciberbullying: insultos, prejuicios y descalificaciones que se repiten una y otra vez.
+          Términos como <em>drug</em>, <em>fucking</em>, <em>school</em> o <em>dumb</em> muestran que el acoso también habita en entornos educativos.
+        </p>
+
+        <figure class="viz">
+          <img src="nube de palabras.png" alt="Nube de palabras global" style="width:100%; height:auto; object-fit:contain;">
+        </figure>
+
+        <figure class="viz">
+          <img src="images/nube_palabras_por_tipo.png" alt="Nube de palabras por tipo" style="width:100%; height:auto; object-fit:contain;">
+        </figure>
+
+        <figcaption class="caption">
+          Las nubes muestran insultos recurrentes y temas sensibles; sirven para entender el tenor emocional del discurso.
+        </figcaption>
+      </div>
+    </section>
+
+    <!-- ================= SECCIÓN 4: LONGITUD ================= -->
+    <section class="stage reveal" id="longitud">
+      <div class="panel">
+        <h2>Cómo se expresa el ataque: longitud y palabras clave</h2>
+
+        <p>
+          Los textos vinculados al ciberacoso suelen ser breves, casi impulsivos, pero cargados de peso emocional.
+          Las palabras más frecuentes revelan mucho más que simples tendencias; muestran cómo el ciberbullying se ensaña con el género, la religión y la etnia.
+        </p>
+
+        <figure class="viz">
+          <iframe src="https://public.tableau.com/views/GraficoLongituddeltextoportipodeciberbullying/Hoja4?:embed=y&:display_count=yes&:showVizHome=no"
+                  width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+        </figure>
+
+        <figcaption class="caption">
+          Relación entre la extensión del texto y el tipo de agresión: los mensajes más cortos tienden a ser más violentos.
+        </figcaption>
+      </div>
+    </section>
+
+    <!-- ================= SECCIÓN 5: CONCLUSIÓN ================= -->
+    <section class="stage reveal" id="conclusion">
+      <div class="panel">
+        <h2>Conclusión</h2>
+
+        <p>
+          Los datos muestran que la violencia digital durante 2020 no fue un accidente:
+          hay patrones, consistencias y temas recurrentes que hablan de desigualdades sociales trasladadas al espacio digital.
+          Comprenderlos nos ayuda a diseñar respuestas más humanas: educación digital, acompañamiento emocional y políticas de convivencia en línea.
+        </p>
+
+        <p class="small">
+          <strong>¿Qué sigue?</strong> Exportar estos hallazgos en programas escolares,
+          campañas de sensibilización y líneas de apoyo para jóvenes que sufren acoso en redes.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      <p>
+        Proyecto colaborativo • 
+        <a class="repo" href="https://github.com/liliaambulua2025-spec/violencia-digital-pudding" target="_blank">
+          liliaambulua2025-spec/violencia-digital-pudding
+        </a>
+      </p>
+      <p style="margin-top:6px">
+        Exporta a PDF desde el navegador (Archivo → Imprimir → Guardar como PDF) para entrega.
+      </p>
+    </footer>
   </div>
 
-  <!-- Botón flotante -->
+  <!-- BOTÓN FLOTANTE -->
   <button id="scrollTopBtn">↑</button>
 
   <script>
