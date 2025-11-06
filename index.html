@@ -5,19 +5,22 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>El eco del ciberbullying durante la pandemia del año 2020</title>
   <meta name="description" content="Investigación periodística de datos sobre ciberbullying en la pandemia de 2020">
+
   <style>
     :root {
-      --bg: #fbfbfc;
-      --text: #111827;
-      --muted: #6b7280;
-      --accent: #6d28d9;
-      --card: #ffffff;
+      --bg: #f4f5f6;
+      --text: #222;
+      --muted: #555;
+      --accent: #68829E; /* azul waterfall */
+      --accent2: #AEBD38; /* verde musgo */
+      --accent3: #598234; /* verde pradera */
+      --card: #fff;
+      --hero-bg: #505160; /* gris tormenta */
       --max: 920px;
-      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      font-family: "Inter", system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
     }
 
     html, body {
-      height: 100%;
       margin: 0;
       background: var(--bg);
       color: var(--text);
@@ -25,137 +28,153 @@
       scroll-behavior: smooth;
     }
 
+    h1, h2 {
+      font-family: "IBM Plex Serif", serif;
+      line-height: 1.2;
+    }
+
     .wrap {
       max-width: var(--max);
-      margin: 40px auto;
+      margin: 0 auto;
       padding: 28px;
     }
 
+    /* HERO inmersivo */
     .hero {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
-      align-items: center;
-    }
-
-    .kicker {
-      color: var(--accent);
-      font-weight: 700;
-      letter-spacing: .06em;
-    }
-
-    h1 {
-      font-size: clamp(28px, 4vw, 44px);
-      margin: 6px 0;
-    }
-
-    p.lead {
-      font-size: 18px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .meta {
+      position: relative;
+      height: 100vh;
+      background: var(--hero-bg);
+      color: #fff;
       display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      color: var(--muted);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 56px);
+      margin: 16px 0;
+    }
+
+    .hero .lead {
+      font-size: 18px;
+      max-width: 720px;
+      line-height: 1.6;
+      color: #e0e0e0;
+    }
+
+    .hero .kicker {
+      letter-spacing: .08em;
+      color: var(--accent2);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    /* Meta */
+    .meta {
+      margin-top: 18px;
+      color: #d0d0d0;
       font-size: 14px;
     }
+    .meta a {
+      color: var(--accent2);
+      font-weight: 600;
+      text-decoration: none;
+    }
 
+    /* Secciones */
     .stage {
-      margin: 48px 0;
+      margin: 80px 0;
     }
 
     .panel {
       background: var(--card);
       border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 6px 20px rgba(15,23,42,0.06);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 26px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.07);
+      transition: all 0.4s ease;
     }
-
-    .panel + .panel {
-      margin-top: 18px;
-    }
-
     .panel:hover {
       transform: translateY(-6px);
-      box-shadow: 0 12px 25px rgba(15,23,42,0.15);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    }
+
+    h2 {
+      color: var(--accent);
+      font-size: 28px;
+      margin-top: 0;
+    }
+
+    p {
+      line-height: 1.7;
+      color: var(--text);
     }
 
     .viz {
-      height: 420px;
+      margin-top: 16px;
       border-radius: 8px;
       overflow: hidden;
-      background: linear-gradient(180deg, #fff, #fafafa);
+      background: linear-gradient(180deg, #fff, #f8f8f8);
       display: flex;
       align-items: center;
       justify-content: center;
-      transform: scale(0.97);
-      transition: transform 0.5s ease, box-shadow 0.5s ease;
-    }
-
-    .reveal.visible .viz {
-      transform: scale(1);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     }
 
     .caption {
       font-size: 15px;
-      color: #4b5563;
+      color: var(--muted);
       margin-top: 10px;
       text-align: center;
       font-style: italic;
       line-height: 1.5;
     }
 
-    .split {
-      display: grid;
-      grid-template-columns: 1fr 360px;
-      gap: 20px;
-      align-items: start;
-    }
-
-    .split .panel {
-      padding: 18px;
-    }
-
-    .small {
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    footer {
-      margin-top: 48px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    a.repo {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    /* reveal animation */
+    /* Reveal animation */
     .reveal {
       opacity: 0;
-      transform: translateY(18px);
-      transition: all .7s cubic-bezier(.2,.9,.2,1);
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(.2,.9,.2,1);
     }
-
     .reveal.visible {
       opacity: 1;
       transform: none;
     }
 
-    /* scroll-to-top button */
+    /* Sticky layout for wide screens */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: start;
+    }
+    .sticky {
+      position: sticky;
+      top: 80px;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 80px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      padding: 40px 0;
+      border-top: 1px solid #ddd;
+    }
+    footer a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* Scroll-top button */
     #scrollTopBtn {
       position: fixed;
       bottom: 24px;
       right: 24px;
-      background: var(--accent);
+      background: var(--accent2);
       color: #fff;
       border: none;
       border-radius: 50%;
@@ -163,43 +182,44 @@
       height: 48px;
       cursor: pointer;
       font-size: 20px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
       transition: background 0.3s;
       z-index: 1000;
     }
-
     #scrollTopBtn:hover {
-      background: #5b21b6;
+      background: var(--accent3);
     }
 
     @media (max-width: 880px) {
       .split { grid-template-columns: 1fr; }
-      .viz { height: 360px; }
+      .hero { height: auto; padding: 80px 20px; }
     }
   </style>
 </head>
 
 <body>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="kicker">Investigación de datos</div>
+    <h1>El eco del ciberbullying durante la pandemia del año 2020</h1>
+    <p class="lead">
+      El encierro no solo nos aisló físicamente, sino que amplificó las voces del ciberbullying.
+      Durante la pandemia de 2020, la vida de millones de estudiantes cambió por completo: las aulas se trasladaron a la virtualidad
+      y las redes sociales se transformaron en su principal punto de encuentro y desahogo. 
+      El ciberbullying se hizo más reiterativo en medio del confinamiento, dejando huellas profundas en la vida emocional de muchos jóvenes y adolescentes.
+    </p>
+    <div class="meta">
+      Equipo: Lilia (redacción y análisis) • Visualizaciones: Tableau • Repositorio:
+      <a href="https://github.com/liliaambulua2025-spec/violencia-digital-pudding" target="_blank">
+        liliaambulua2025-spec/violencia-digital-pudding
+      </a>
+    </div>
+  </header>
+
   <div class="wrap">
-    <header class="hero">
-      <div class="kicker"></div>
-      <h1>El eco del ciberbullying durante la pandemia del año 2020</h1>
-      <p class="lead">
-        El encierro no solo nos aisló físicamente, sino que amplificó las voces del ciberbullying.
-        Durante la pandemia de 2020, la vida de millones de estudiantes cambió por completo: las aulas se trasladaron a la virtualidad
-        y las redes sociales se transformaron en su principal punto de encuentro y desahogo. 
-        El ciberbullying se hizo más reiterativo en medio del confinamiento, dejando huellas profundas en la vida emocional de muchos jóvenes y adolescentes.
-      </p>
-      <div class="meta">
-        Equipo: Lilia (redacción y análisis) • Visualizaciones: Tableau • Repositorio:
-        <a class="repo" href="https://github.com/liliaambulua2025-spec/violencia-digital-pudding" target="_blank">
-          liliaambulua2025-spec/violencia-digital-pudding
-        </a>
-      </div>
-    </header>
 
     <!-- SECCIÓN 1 -->
-    <section class="stage reveal" id="volumen">
+    <section class="stage reveal">
       <div class="panel">
         <h2>¿Qué tan grande fue el problema?</h2>
         <p>
@@ -219,7 +239,7 @@
     </section>
 
     <!-- SECCIÓN 2 -->
-    <section class="stage reveal" id="porcentajes">
+    <section class="stage reveal">
       <div class="panel">
         <h2>¿Qué tipo de acoso fue más común?</h2>
         <p>
@@ -237,7 +257,7 @@
     </section>
 
     <!-- SECCIÓN 3 -->
-    <section class="stage reveal" id="lenguaje">
+    <section class="stage reveal">
       <div class="panel">
         <h2>El lenguaje del acoso</h2>
         <p>
@@ -247,14 +267,14 @@
           donde la pantalla reemplazó el aula, pero no eliminó la exclusión.
         </p>
         <div class="viz">
-          <img src="nube de palabras.png" alt="Nube de palabras global" style="width:100%; height:auto; object-fit:contain;">
+          <img src="nube de palabras.png" alt="Nube de palabras global" style="width:100%; height:auto;">
         </div>
         <p class="caption">Nube de palabras global: los insultos más frecuentes en los mensajes durante la pandemia.</p>
       </div>
     </section>
 
     <!-- SECCIÓN 4 -->
-    <section class="stage reveal" id="longitud">
+    <section class="stage reveal">
       <div class="panel">
         <h2>Cómo se expresa el ataque: longitud y palabras clave</h2>
         <p>
@@ -272,7 +292,7 @@
     </section>
 
     <!-- CONCLUSIÓN -->
-    <section class="stage reveal" id="conclusion">
+    <section class="stage reveal">
       <div class="panel">
         <h2>Conclusión</h2>
         <p>
@@ -285,17 +305,31 @@
       </div>
     </section>
 
-    <footer>
-      <p>Proyecto colaborativo • 
-        <a class="repo" href="https://github.com/liliaambulua2025-spec/violencia-digital-pudding" target="_blank">
-          liliaambulua2025-spec/violencia-digital-pudding
-        </a>
-      </p>
-      <p style="margin-top:6px">Exporta a PDF desde el navegador (Archivo → Imprimir → Guardar como PDF) para entrega.</p>
-    </footer>
   </div>
 
-  <!-- Botón flotante -->
+  <footer>
+    <p>Proyecto colaborativo • 
+      <a href="https://github.com/liliaambulua2025-spec/violencia-digital-pudding" target="_blank">
+        liliaambulua2025-spec/violencia-digital-pudding
+      </a>
+    </p>
+    <p style="margin-top:6px">Exporta a PDF desde el navegador (Archivo → Imprimir → Guardar como PDF) para entrega.</p>
+  </footer>
+
   <button id="scrollTopBtn">↑</button>
 
   <script>
+    // Animación reveal
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add('visible');
+      })
+    }, {threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(s=>observer.observe(s));
+
+    // Botón subir arriba
+    const btn = document.getElementById('scrollTopBtn');
+    btn.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+  </script>
+</body>
+</html>
